@@ -5,7 +5,7 @@ Fortunately, the chip designer/maker, they have the solution for this problem: C
 
 ## CPU Cache
 
-You can read the definition of CPU Cache [here](https://en.wikipedia.org/wiki/CPU_cache), or you can read my TL;DR version: 
+You can read the definition of CPU Cache [here](https://en.wikipedia.org/wiki/CPU_cache), or you can read my TL;DR version:  
 There is some small (in computer space size) but very fast caches that are local to the CPU itself. It allows CPU to access data as fast as the speed of CPU cycle. The higher level of the cache, the slower it becomes (in exchange for bigger space). Usuallly the lower level is use for indexing data of the upper level.
 
 For Example: the Core i7 Xeon Processor
@@ -73,3 +73,6 @@ What, wait, according to complexity (Big-O) of our operation, those two are the 
 It turns out, when we read an exact address in memory (RAM), the processor will also load the nearby memory block onto the CPU cache. I.e. Reading address 1000 in the memory will also load address 1001, 1002, 1003... to the CPU cache so the next read will be a cache hit, thus avoid reading the RAM entirely.  
 Array is an exact match for this behaviour, LinkedList, on the other hand, having its elements scattered in the heap (i.e., not sequential), everytime it accesses the next element in the list will likely be a cache-miss, and reading from RAM is much slower as we discovered above.
 
+## References
+1. Approximate cost to access between various cache and main memory - [StackOverflow](http://stackoverflow.com/questions/4087280/approximate-cost-to-access-various-caches-and-main-memory)
+2. Benchmark code can be read/copy [here](https://github.com/unrealhoang/hardcore/blob/master/cache_locality/list_v_array/src/lib.rs)
