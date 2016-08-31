@@ -1,0 +1,6 @@
+[package]
+name = "list_v_array"
+version = "0.1.0"
+authors = ["Unreal Hoang <unrealhoang@gmail.com>"]
+
+[dependencies]
