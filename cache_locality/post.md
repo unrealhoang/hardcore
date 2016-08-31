@@ -69,7 +69,7 @@ bench_array_traveral        ... bench:    58 ns/iter (+/- 40)
 bench_linked_list_traversal ... bench: 1,456 ns/iter (+/- 197)
 ```
 
-What, wait, according to complexity (Big-O) of our operation, those two are the same (O(N)), how come the result is so much different (25 times). 
-It turns out, when we read an exact address in memory (RAM), the processor will also load the nearby memory block onto the CPU cache. I.e. Reading address 1000 in the memory will also load address 1001, 1002, 1003... to the CPU cache so the next read will be a cache hit, thus avoid reading the RAM entirely. 
+What, wait, according to complexity (Big-O) of our operation, those two are the same (O(N)), how come the result is so much different (25 times).  
+It turns out, when we read an exact address in memory (RAM), the processor will also load the nearby memory block onto the CPU cache. I.e. Reading address 1000 in the memory will also load address 1001, 1002, 1003... to the CPU cache so the next read will be a cache hit, thus avoid reading the RAM entirely.  
 Array is an exact match for this behaviour, LinkedList, on the other hand, having its elements scattered in the heap (i.e., not sequential), everytime it accesses the next element in the list will likely be a cache-miss, and reading from RAM is much slower as we discovered above.
 
