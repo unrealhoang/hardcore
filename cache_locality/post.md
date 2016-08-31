@@ -11,18 +11,19 @@ There is some small (in computer space size) but very fast caches that are local
 For Example: the Core i7 Xeon Processor
 
 ```
-Core i7 Xeon 5500 Series Data Source Latency (approximate)               [Pg. 22]
+Latency Comparison Numbers
+--------------------------
+L1 cache reference                           0.5 ns
+Branch mispredict                            5   ns
+L2 cache reference                           7   ns                      14x L1 cache
+Mutex lock/unlock                           25   ns
+Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
 
-local  L1 CACHE hit,                              ~4 cycles (   2.1 -  1.2 ns )
-local  L2 CACHE hit,                             ~10 cycles (   5.3 -  3.0 ns )
-local  L3 CACHE hit, line unshared               ~40 cycles (  21.4 - 12.0 ns )
-local  L3 CACHE hit, shared line in another core ~65 cycles (  34.8 - 19.5 ns )
-local  L3 CACHE hit, modified in another core    ~75 cycles (  40.2 - 22.5 ns )
-
-remote L3 CACHE (Ref: Fig.1 [Pg. 5])        ~100-300 cycles ( 160.7 - 30.0 ns )
-
-local  DRAM                                                   ~60 ns
-remote DRAM                                                  ~100 ns
+Notes
+-----
+1 ns = 10^-9 seconds
+1 us = 10^-6 seconds = 1,000 ns
+1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
 ```
 
 We can see from the example above that, if we don't use the CPU Cache at all, one access to RAM will cost us about ~60ns (~100 CPU Cycle). Now we know about the CPU Cache, how do we utilize the power of the cache?
@@ -74,5 +75,5 @@ It turns out, when we read an exact address in memory (RAM), the processor will 
 Array is an exact match for this behaviour, LinkedList, on the other hand, having its elements scattered in the heap (i.e., not sequential), everytime it accesses the next element in the list will likely be a cache-miss, and reading from RAM is much slower as we discovered above.
 
 ## References
-1. Approximate cost to access between various cache and main memory - [StackOverflow](http://stackoverflow.com/questions/4087280/approximate-cost-to-access-various-caches-and-main-memory)
+1. Latency every developer should know - [StackOverflow](https://gist.github.com/jboner/2841832)
 2. Benchmark code can be read/copy [here](https://github.com/unrealhoang/hardcore/blob/master/cache_locality/list_v_array/src/lib.rs)
